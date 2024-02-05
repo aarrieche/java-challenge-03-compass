@@ -1,3 +1,0 @@
-INDEX VERSION 1.134+C:\Users\W10\Desktop\desafio\java-challenge-03-compass\.metadata\.plugins\org.eclipse.jdt.core
-1696264553.index
-1865797976.index
