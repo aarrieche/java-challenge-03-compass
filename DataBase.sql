@@ -55,3 +55,47 @@ CREATE TABLE Product_order (
     products_id integer references Categories (id),
     orders_id integer references Categories (id)
 );
+
+
+
+-- Inserir dados na tabela Clients
+INSERT INTO Clients (name, email, adress, phone) VALUES
+    ('John Doe', 'john.doe@example.com', '123 Main Street', '12345678901'),
+    ('Jane Smith', 'jane.smith@example.com', '456 Oak Avenue', '98765432109');
+
+-- Inserir dados na tabela Type_payments
+INSERT INTO Type_payments (type) VALUES
+    ('Credit Card'),
+    ('PayPal'),
+    ('Cash');
+
+-- Inserir dados na tabela Categories
+INSERT INTO Categories (name) VALUES
+    ('Comum'),
+    ('Wok'),
+    ('Com cabo'),
+    ('Pressão'),
+    ('Caçarola');
+
+-- Inserir dados na tabela Products
+INSERT INTO Products (name, description, value, quantity, Categories_id) VALUES
+    ('Wok Inox', 'wok de inox', 999.99, 50, 2),
+    ('Wok antiaderente', 'wok de material antiaderente', 599.99, 100, 2),
+    ('Panela de pressão inox', 'Panela de pressão inox tramontina', 1299.99, 30, 4);
+
+-- Inserir dados na tabela status_order
+INSERT INTO status_order (status) VALUES
+    ('Processing'),
+    ('Shipped'),
+    ('Delivered');
+
+-- Inserir dados na tabela orders
+INSERT INTO orders (date_time, clients_id, total, Type_payments, Payment_data, status_order_id) VALUES
+    (CURRENT_TIMESTAMP, 1, 999.99, 1, '1234-5678', 1),
+    (CURRENT_TIMESTAMP, 2, 39.98, 2, '9012-3456', 2);
+
+-- Inserir dados na tabela Product_order
+INSERT INTO Product_order (quantity, products_id, orders_id) VALUES
+    (2, 1, 1),
+    (3, 2, 2),
+    (1, 3, 2);
