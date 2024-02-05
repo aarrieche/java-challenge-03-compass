@@ -142,4 +142,4 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform
 
-.metadata/
+metadata/
