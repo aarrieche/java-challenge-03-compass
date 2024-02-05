@@ -3,13 +3,13 @@
 DROP DATABASE IF EXISTS ECommerce;
 
 -- Cria o banco de dados;
-CREATE DATABASE EComerce;
+CREATE DATABASE ECommerce;
 
 -- Dados do cliente (não utilizado nesse momento);
 
 CREATE TABLE Clients (
     id serial primary key,
-    name character varying(60) not null,
+    name character varying(60) not null unique,
     email character varying(60) unique,
     adress character varying(60) not null,    
     phone VARCHAR(11)
@@ -29,7 +29,7 @@ CREATE TABLE Products (
     id serial primary key,
     name character varying (50) not null,
     description character varying (200) not null,
-    value character double not null,
+    value double precision not null,
     quantity integer not null,
     Categories_id integer references Categories (id)
 );
@@ -43,10 +43,10 @@ CREATE TABLE orders (
     id serial primary key,
     date_time timestamp default current_timestamp NOT NULL,
     clients_id integer references Clients (id),
-    total character double not null,
+    total double precision not null,
     Type_payments integer references Type_payments (id),
     Payment_data character varying (15) not null,
-    status_order_id integer references status_order (id),
+    status_order_id integer references status_order (id)
 );
 
 CREATE TABLE Product_order (
@@ -55,5 +55,3 @@ CREATE TABLE Product_order (
     products_id integer references Categories (id),
     orders_id integer references Categories (id)
 );
-
-
