@@ -1,11 +1,9 @@
--- Se já existe, deleta a database. comentar se necessário
+-- Deletes database. Comment if necessary
 
 DROP DATABASE IF EXISTS ECommerce;
 
--- Cria o banco de dados;
+-- Creates the database;
 CREATE DATABASE ECommerce;
-
--- Dados do cliente (não utilizado nesse momento);
 
 CREATE TABLE Clients (
     id serial primary key,
