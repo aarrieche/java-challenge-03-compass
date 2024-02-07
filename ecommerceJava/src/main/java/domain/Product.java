@@ -21,6 +21,10 @@ public class Product implements Serializable {
 	private int quantity;
 	private Category category;
 
+	public Product() {
+        
+    }
+	
 	public Product(int id, String name, String description, double value, int quantity, Category category) {
 		super();
 		this.id = id;
