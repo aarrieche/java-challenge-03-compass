@@ -66,12 +66,28 @@ public class Program {
                         break;
                     case 4:
                         System.out.println("4- Atualizar produto:");
+                        
+                        System.out.println("Insira a ID do produto que deseja alterar:");
+                        Long productId = in.nextLong();
+                        in.nextLine();
+                        System.out.println("Insira o novo nome do produto:");
+                        String newName = in.nextLine();
+                        System.out.println("Insira a nova descrição do produto:");
+                        String newDescription = in.nextLine();
+                        System.out.println("Insira o novo valor do produto:");
+                        double newValue = in.nextDouble();
+                        System.out.println("Insira a nova quantidade do produto:");
+                        int newQuantity = in.nextInt();
+
+                        service.ProductService.updateProduct(productId, newName.isEmpty() ? null : newName, newDescription.isEmpty() ? null : newDescription, newValue, newQuantity);
+                        
                         break;
+                        
                     case 5:
                         System.out.println("5 - Excluir produto:");
                         break;
                     case 6:
-                        System.out.println("5 - Listar categorias:");
+                        System.out.println("6 - Listar categorias:");
                         CategoryService.listCategories();
                         break;
                     case 7:

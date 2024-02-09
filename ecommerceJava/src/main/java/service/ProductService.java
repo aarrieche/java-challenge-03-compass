@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -45,5 +46,50 @@ public class ProductService {
             em.close();
         }
     }
+    
+    public static Product searchProductByName(String productName) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            // JPQL query to select a product by name
+            Query query = em.createQuery("SELECT p FROM Product p WHERE p.name = :name", Product.class);
+            query.setParameter("name", productName);
+            Product product = (Product) query.getSingleResult();
+            em.getTransaction().commit();
+            return product;
+        } catch (NoResultException e) {
+            System.out.println("No product found with the name '" + productName + "'.");
+            return null;
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+    
+    public static void updateProduct(Long productId, String newName, String newDescription, double newValue, int newQuantity) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            Product product = em.find(Product.class, productId);
+            if (product != null) {
+                if (newName != null) product.setName(newName);
+                if (newDescription != null) product.setDescription(newDescription);
+                if (newValue != 0) product.setValue(newValue);
+                if (newQuantity != 0) product.setQuantity(newQuantity);
+                em.getTransaction().commit();
+                System.out.println("Product with ID " + productId + " updated successfully.");
+            } else {
+                System.out.println("Product with ID " + productId + " not found.");
+            }
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
     
 }
