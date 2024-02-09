@@ -14,7 +14,7 @@ public class ProductService {
 
     private static EntityManagerFactory enf = Persistence.createEntityManagerFactory("ecommerce");
 
-    public static void listProdutos() {
+    public static void listProduct() {
         EntityManager em = enf.createEntityManager();
 
         em.getTransaction().begin();
@@ -32,7 +32,18 @@ public class ProductService {
         em.close();
     }
     
-    
-    
+    public static void createProduct(Product product) {
+        EntityManager em = enf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
 
+            transaction.begin();
+            em.persist(product);
+            transaction.commit();
+            System.out.println("Produto criado com sucesso.");
+            
+        {
+            em.close();
+        }
+    }
+    
 }
