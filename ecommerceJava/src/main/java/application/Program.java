@@ -33,7 +33,23 @@ public class Program {
                         break;
                     case 3:
                         System.out.println("3- Cadastrar produto:");
-                        
+                        System.out.println("Digite o nome do produto:");
+                        String productName = in.next();
+                        System.out.println("Digite a descrição do produto:");
+                        String productDescription = in.next();
+                        System.out.println("Digite o valor do produto:");
+                        double productValue = in.nextDouble();
+                        System.out.println("Digite a quantidade do produto:");
+                        int productQuantity = in.nextInt();
+                        System.out.println("Digite o ID da categoria do produto:");
+                        int categoryId = in.nextInt();
+                        Category category = CategoryService.findCategoryById(categoryId);
+                        if (category != null) {
+                            Product product = new Product(productName, productDescription, productValue, productQuantity, category);
+                            ProductService.createProducts(product);
+                        } else {
+                            System.out.println("Categoria não encontrada.");
+                        }
                         break;
                     case 4:
                         System.out.println("4- Atualizar produto:");
