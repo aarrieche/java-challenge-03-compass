@@ -13,6 +13,7 @@ public class Program {
         Scanner in = new Scanner(System.in);
         String productName;
         Product product;
+        Long productId;
         
         try {
   
@@ -68,7 +69,7 @@ public class Program {
                         System.out.println("4- Atualizar produto:");
                         
                         System.out.println("Insira a ID do produto que deseja alterar:");
-                        Long productId = in.nextLong();
+                        productId = in.nextLong();
                         in.nextLine();
                         System.out.println("Insira o novo nome do produto:");
                         String newName = in.nextLine();
@@ -85,6 +86,11 @@ public class Program {
                         
                     case 5:
                         System.out.println("5 - Excluir produto:");
+                        
+                        System.out.println("Insira ID do produto a ser excluido:");
+                        productId = in.nextLong();
+
+                        service.ProductService.deleteProduct(productId);
                         break;
                     case 6:
                         System.out.println("6 - Listar categorias:");

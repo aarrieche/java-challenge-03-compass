@@ -55,12 +55,12 @@ public class ProductService {
             em.getTransaction().begin();
             // JPQL query to select a product by name
             Query query = em.createQuery("SELECT p FROM Product p WHERE p.name = :name", Product.class);
-            query.setParameter("name", productName);
+            query.setParameter("nome", productName);
             Product product = (Product) query.getSingleResult();
             em.getTransaction().commit();
             return product;
         } catch (NoResultException e) {
-            System.out.println("No product found with the name '" + productName + "'.");
+            System.out.println("Não encontrado produto com nome '" + productName + "'.");
             return null;
         } finally {
             em.close();
@@ -81,15 +81,36 @@ public class ProductService {
                 if (newValue != 0) product.setValue(newValue);
                 if (newQuantity != 0) product.setQuantity(newQuantity);
                 em.getTransaction().commit();
-                System.out.println("Product with ID " + productId + " updated successfully.");
+                System.out.println("Produto com ID " + productId + " atualizado com sucesso.");
             } else {
-                System.out.println("Product with ID " + productId + " not found.");
+                System.out.println("Produto com ID  " + productId + " não encontrado.");
             }
         } finally {
             em.close();
             emf.close();
         }
     }
+    
+    public static void deleteProduct(Long productId) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Product product = em.find(Product.class, productId);
+            if (product != null) {
+                em.remove(product);
+                em.getTransaction().commit();
+                System.out.println("Produto com ID  " + productId + " deletado com sucesso.");
+            } else {
+                System.out.println("Produto com ID  " + productId + " não encontrado.");
+            }
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
 
     
 }
