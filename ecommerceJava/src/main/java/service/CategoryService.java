@@ -31,7 +31,7 @@ public class CategoryService {
         em.close();
     }
     
-    public static Category findCategoryById(int categoryId) {
+    public static Category findCategoryById(long categoryId) {
         EntityManager em = enf.createEntityManager();
         em.getTransaction().begin();
 

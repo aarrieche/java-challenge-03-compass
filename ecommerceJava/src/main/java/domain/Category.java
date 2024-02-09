@@ -15,23 +15,23 @@ public class Category implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private long id;
 	private String name;
 	
 	public Category() {
         
     }
 
-    public Category(Integer id, String name) {
+    public Category(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

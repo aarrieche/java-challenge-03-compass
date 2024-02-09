@@ -13,10 +13,10 @@ public class Program {
         Scanner in = new Scanner(System.in);
         String productName;
         Product product;
-        Long productId;
-        
+        long productId;
+
         try {
-  
+
             int option = 0;
             while (option != 7) {
                 try {
@@ -30,20 +30,21 @@ public class Program {
                 switch (option) {
                     case 1:
                         System.out.println("1- Listar produtos:");
-                     
-                        service.ProductService.listProducts();
-                     
+
+                        ProductService.listProducts();
+
                         break;
                     case 2:
                         System.out.println("2- Buscar produto:");
                         System.out.println("Digite o nome do produto:");
+                        in.nextLine();
                         productName = in.nextLine();
-                        
-                        product = service.ProductService.searchProductByName(productName);
+
+                        product = ProductService.searchProductByName(productName);
                         if (product != null) {
                             System.out.println("ID: " + product.getId() + ", Name: " + product.getName() + ", Description: " + product.getDescription() + ", Value: " + product.getValue() + ", Quantity: " + product.getQuantity());
                         }
-                        
+
                         break;
                     case 3:
                         System.out.println("3- Cadastrar produto:");
@@ -67,7 +68,7 @@ public class Program {
                         break;
                     case 4:
                         System.out.println("4- Atualizar produto:");
-                        
+
                         System.out.println("Insira a ID do produto que deseja alterar:");
                         productId = in.nextLong();
                         in.nextLine();
@@ -80,17 +81,17 @@ public class Program {
                         System.out.println("Insira a nova quantidade do produto:");
                         int newQuantity = in.nextInt();
 
-                        service.ProductService.updateProduct(productId, newName.isEmpty() ? null : newName, newDescription.isEmpty() ? null : newDescription, newValue, newQuantity);
-                        
+                        ProductService.updateProduct(productId, newName.isEmpty() ? null : newName, newDescription.isEmpty() ? null : newDescription, newValue, newQuantity); // Corrigido de service.ProductService.updateProduct
+
                         break;
-                        
+
                     case 5:
                         System.out.println("5 - Excluir produto:");
-                        
-                        System.out.println("Insira ID do produto a ser excluido:");
-                        productId = in.nextLong();
 
-                        service.ProductService.deleteProduct(productId);
+                        System.out.println("Insira ID do produto a ser excluído:");
+                        productId = in.nextLong(); 
+
+                        ProductService.deleteProduct(productId); 
                         break;
                     case 6:
                         System.out.println("6 - Listar categorias:");
@@ -107,6 +108,6 @@ public class Program {
         } finally {
             in.close();
         }
-        
+
     }
 }

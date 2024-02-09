@@ -6,7 +6,7 @@
     <persistence-unit name="ecommerce" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="javax.persistence.jdbc.url"
-                value="jdbc:postgresql://localhost:5432/ecommerceJava"/>
+                value="jdbc:postgresql://localhost:5432/Teste"/>
             <property name="javax.persistence.jdbc.driver"
                 value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
@@ -15,8 +15,8 @@
             <!-- Configuração do Hibernate -->
             <property name="hibernate.dialect"
                 value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- ou "create" se deseja que o Hibernate crie o schema -->
-            <property name="hibernate.show_sql" value="true"/> <!-- para exibir as consultas SQL na saída -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/> 
+            <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

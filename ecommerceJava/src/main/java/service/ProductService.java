@@ -48,14 +48,13 @@ public class ProductService {
     }
     
     public static Product searchProductByName(String productName) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerce");
         EntityManager em = emf.createEntityManager();
         
         try {
             em.getTransaction().begin();
-            // JPQL query to select a product by name
             Query query = em.createQuery("SELECT p FROM Product p WHERE p.name = :name", Product.class);
-            query.setParameter("nome", productName);
+            query.setParameter("name", productName);
             Product product = (Product) query.getSingleResult();
             em.getTransaction().commit();
             return product;
@@ -68,8 +67,8 @@ public class ProductService {
         }
     }
     
-    public static void updateProduct(Long productId, String newName, String newDescription, double newValue, int newQuantity) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
+    public static void updateProduct(long productId, String newName, String newDescription, double newValue, int newQuantity) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerce");
         EntityManager em = emf.createEntityManager();
         
         try {
@@ -91,9 +90,8 @@ public class ProductService {
         }
     }
     
-    public static void deleteProduct(Long productId) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("your_persistence_unit_name");
-        EntityManager em = emf.createEntityManager();
+    public static void deleteProduct(long productId) {
+        EntityManager em = enf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -101,16 +99,12 @@ public class ProductService {
             if (product != null) {
                 em.remove(product);
                 em.getTransaction().commit();
-                System.out.println("Produto com ID  " + productId + " deletado com sucesso.");
+                System.out.println("Produto com ID " + productId + " deletado com sucesso.");
             } else {
-                System.out.println("Produto com ID  " + productId + " não encontrado.");
+                System.out.println("Produto com ID " + productId + " não encontrado.");
             }
         } finally {
             em.close();
-            emf.close();
         }
     }
-
-
-    
 }
