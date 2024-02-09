@@ -11,7 +11,9 @@ public class Program {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
+        String productName;
+        Product product;
+        
         try {
   
             int option = 0;
@@ -28,16 +30,24 @@ public class Program {
                     case 1:
                         System.out.println("1- Listar produtos:");
                      
-                        service.ProductService.listProduct();
+                        service.ProductService.listProducts();
                      
                         break;
                     case 2:
                         System.out.println("2- Buscar produto:");
+                        System.out.println("Digite o nome do produto:");
+                        productName = in.nextLine();
+                        
+                        product = service.ProductService.searchProductByName(productName);
+                        if (product != null) {
+                            System.out.println("ID: " + product.getId() + ", Name: " + product.getName() + ", Description: " + product.getDescription() + ", Value: " + product.getValue() + ", Quantity: " + product.getQuantity());
+                        }
+                        
                         break;
                     case 3:
                         System.out.println("3- Cadastrar produto:");
                         System.out.println("Digite o nome do produto:");
-                        String productName = in.next();
+                        productName = in.next();
                         System.out.println("Digite a descrição do produto:");
                         String productDescription = in.next();
                         System.out.println("Digite o valor do produto:");
@@ -48,7 +58,7 @@ public class Program {
                         int categoryId = in.nextInt();
                         Category category = CategoryService.findCategoryById(categoryId);
                         if (category != null) {
-                            Product product = new Product(productName, productDescription, productValue, productQuantity, category);
+                            product = new Product(productName, productDescription, productValue, productQuantity, category);
                             ProductService.createProducts(product);
                         } else {
                             System.out.println("Categoria não encontrada.");
