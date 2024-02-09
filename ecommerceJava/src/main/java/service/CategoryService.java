@@ -30,5 +30,16 @@ public class CategoryService {
 
         em.close();
     }
+    
+    public static Category findCategoryById(int categoryId) {
+        EntityManager em = enf.createEntityManager();
+        em.getTransaction().begin();
+
+        Category category = em.find(Category.class, categoryId);
+        em.getTransaction().commit();
+        em.close();
+        
+        return category;
+    }
 
 }

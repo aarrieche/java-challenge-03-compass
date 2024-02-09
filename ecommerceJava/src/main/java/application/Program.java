@@ -2,7 +2,10 @@ package application;
 
 import java.util.Scanner;
 
+import domain.Category;
+import domain.Product;
 import service.CategoryService;
+import service.ProductService;
 
 public class Program {
 
@@ -53,5 +56,6 @@ public class Program {
         } finally {
             in.close();
         }
+        
     }
 }

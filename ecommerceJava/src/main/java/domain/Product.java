@@ -25,15 +25,14 @@ public class Product implements Serializable {
         
     }
 	
-	public Product(int id, String name, String description, double value, int quantity, Category category) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.value = value;
-		this.quantity = quantity;
-		this.category = category;
+	public Product(String name, String description, double value, int quantity, Category category) {
+	    this.name = name;
+	    this.description = description;
+	    this.value = value;
+	    this.quantity = quantity;
+	    this.category = category;
 	}
+
 
 	public int getId() {
 		return id;
