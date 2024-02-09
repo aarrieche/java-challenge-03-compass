@@ -1,34 +1,44 @@
 package domain;
 
-public class Product {
-	private int id;
-	
-	private String name;
-	
-	private String description;
-	
-	private double value;
-	
-	private int quantity;
-	
-	private Category category;
-	
+import java.io.Serializable;
 
-	public Product(int id, String name, String description, double value, int quantity, Category category) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.value = value;
-		this.quantity = quantity;
-		this.category = category;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Product implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	private String name;
+	private String description;
+	private double value;
+	private int quantity;
+	private Category category;
+
+	public Product() {
+        
+    }
+	
+	public Product(String name, String description, double value, int quantity, Category category) {
+	    this.name = name;
+	    this.description = description;
+	    this.value = value;
+	    this.quantity = quantity;
+	    this.category = category;
 	}
 
-	public int getId() {
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -77,6 +87,5 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", value=" + value
 				+ ", quantity=" + quantity + ", category=" + category + "]";
 	}
-	
-	
+
 }
