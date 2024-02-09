@@ -27,6 +27,9 @@ public class Program {
                 switch (option) {
                     case 1:
                         System.out.println("1- Listar produtos:");
+                     
+                        service.ProductService.listProduct();
+                     
                         break;
                     case 2:
                         System.out.println("2- Buscar produto:");
